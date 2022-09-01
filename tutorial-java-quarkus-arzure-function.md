@@ -43,7 +43,7 @@ In this tutorial, you learn how to:
         -DarchetypeArtifactId=quarkus-azure-functions-http-archetype \
         -DgroupId=org.acme \
         -DartifactId=quarkus-azure-function \
-        -DarchetypeVersion=2.10.1.Final
+        -DarchetypeVersion=2.12.0.Final
     ```
 
     The output should end up with `BUILD SUCCES`.
