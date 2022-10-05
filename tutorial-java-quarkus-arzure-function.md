@@ -14,8 +14,6 @@ ms.custom: mvc
 This tutorial walks you through the process of developing, building, and deploying serverless Java apps with Quarkus on Azure Function. 
 When you are finished, you will run serverless [Quarkus](https://quarkus.io) applications on [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) as well as continuing to monitor the applications on Azure.
 
-![Quarkus application storing data in PostgreSQL](./media/tutorial-java-quarkus-postgresql/quarkus-crud-running-locally.png)
-
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
@@ -43,7 +41,7 @@ In this tutorial, you learn how to:
         -DarchetypeArtifactId=quarkus-azure-functions-http-archetype \
         -DgroupId=org.acme \
         -DartifactId=quarkus-azure-function \
-        -DarchetypeVersion=2.10.1.Final
+        -DarchetypeVersion=2.13.0.Final
     ```
 
     The output should end up with `BUILD SUCCES`.
