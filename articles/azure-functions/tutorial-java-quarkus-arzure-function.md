@@ -306,17 +306,17 @@ In this tutorial, you learn how to:
     
 1. Go to `Function App` in the Azure portal. You will see the deployed Quarkus function (e.g. _quarkus-azure-functions-http-archetype-20220629204040017_).
 
-    ![Fucntion App](./media/tutorial-java-quarkus-azure-function/azure-function-app.png)
+    ![Fucntion App](./media/azure-function-app.png)
 
     When you click on the `function name`, you will see the function app's detail information such as *Location*, *Subscription*, *URL*, *Metrics*, and *App Service Plan*.
 
 2. In the detail page, click on the `URL`.
 
-    ![Fucntion App Detail](./media/tutorial-java-quarkus-azure-function/azure-function-app-detail.png)
+    ![Fucntion App Detail](./media/azure-function-app-detail.png)
 
     Then, you will see if your function is `up` and `running` now. 
 
-    ![Fucntion App Ready](./media/tutorial-java-quarkus-azure-function/azure-function-app-ready.png)
+    ![Fucntion App Ready](./media/azure-function-app-ready.png)
 
 3. Invoke the `greeting` function using `CURL` command on your local terminal.
 
