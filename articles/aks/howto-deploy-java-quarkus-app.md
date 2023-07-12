@@ -341,6 +341,10 @@ kubectl apply -f target/kubernetes/kubernetes.yml -n todo-quarkus
 The output should look like:
 
 ```shell
+serviceaccount/quarkus-todo-demo-app-aks created
+role.rbac.authorization.k8s.io/view-secrets created
+rolebinding.rbac.authorization.k8s.io/quarkus-todo-demo-app-aks-view-secrets created
+rolebinding.rbac.authorization.k8s.io/quarkus-todo-demo-app-aks-view created
 service/quarkus-todo-demo-app-aks created
 deployment.apps/quarkus-todo-demo-app-aks created
 ```
