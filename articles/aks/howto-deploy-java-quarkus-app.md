@@ -195,8 +195,8 @@ The output should look like:
 
 ```shell
 NAME                                STATUS   ROLES   AGE   VERSION
-aks-agentpool-30709549-vmss000001   Ready    agent   12d   v1.23.8
-aks-agentpool-30709549-vmss000002   Ready    agent   12d   v1.23.8
+aks-agentpool-30709549-vmss000001   Ready    agent   12m   v1.25.6
+aks-agentpool-30709549-vmss000002   Ready    agent   12m   v1.25.6
 ```
 
 Create a new `todo-quarkus` namespace in your Kubernetes service:
@@ -341,12 +341,8 @@ kubectl apply -f target/kubernetes/kubernetes.yml -n todo-quarkus
 The output should look like:
 
 ```shell
-serviceaccount/todo-quarkus-aks created
-service/todo-quarkus-aks created
-role.rbac.authorization.k8s.io/view-secrets created
-rolebinding.rbac.authorization.k8s.io/todo-quarkus-aks-view created
-rolebinding.rbac.authorization.k8s.io/todo-quarkus-aks-view-secrets created
-deployment.apps/todo-quarkus-aks created
+service/quarkus-todo-demo-app-aks created
+deployment.apps/quarkus-todo-demo-app-aks created
 ```
 
 Get the `EXTERNAL-IP` to access the Todo application using the following command.
@@ -358,13 +354,13 @@ kubectl get svc -n todo-quarkus
 The output should look like:
 
 ```shell
-NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
-todo-quarkus-aks   LoadBalancer   10.0.62.249   20.237.19.191   80:30259/TCP   5m
+NAME                        TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE
+quarkus-todo-demo-app-aks   LoadBalancer   10.0.236.101   20.12.126.200   80:30963/TCP   37s
 ```
 
-Open a new web browser to typy the `EXTERNAL-IP` (e.g. _20.237.19.191_) in. Then, give it try to play the mine game a few time:
+Open a new web browser to typy the `EXTERNAL-IP` (e.g. _20.12.126.200_) in. Then, add a new todo item with `Deployed the Todo app to AKS`. Also, select the `Introduction to Quarkus Todo App` item to complete.
 
-![Screenshot](./media/aks-quarkus/aks-demo-gui.png)
+![Screenshot](./media/aks-quarkus/aks-demo-gui-2.png)
 
 Access the RESTful API (_/api_) to get all todo items that store in the **Azure PostgreSQL database**. You need to replace with your own `ROUTE` url: 
 
@@ -377,11 +373,11 @@ The output should look like:
 ```shell
 HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-content-length: 664
+content-length: 750
 
 [
     {
-        "completed": false,
+        "completed": true,
         "id": 1,
         "order": 0,
         "title": "Introduction to Quarkus Todo App",
@@ -407,6 +403,13 @@ content-length: 664
         "order": 3,
         "title": "Quarkus on Azure Functions",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-first-quarkus"
+    },
+    {
+        "completed": false,
+        "id": 5,
+        "order": 5,
+        "title": "Deployed the Todo app to AKS",
+        "url": null
     }
 ]
 ```
@@ -526,7 +529,7 @@ f2c4302f03b8: Layer already exists
 
 ### 3.4. Re-deploy the Quarkus application to AKS
 
-To patch the existing deployment in the AKS cluster, create a `patch-deployment.yml` file in the `kube` directory.
+To patch the existing deployment in the AKS cluster, create a `patch-deployment.yml` file in the `src/kube` directory.
 
 Add the following specification to the YAML file. Make sure to replace `USERNAME` with your own username.
 
@@ -541,19 +544,19 @@ spec:
 
 Save the file.
 
-Patch the `todo-quarkus-aks` deployment using the following `kubectl` command:
+Patch the `quarkus-todo-demo-app-aks` deployment using the following `kubectl` command:
 
 ```shell
-kubectl patch deployment todo-quarkus-aks --patch-file kube/patch-deployment.yml -n todo-quarkus
+kubectl patch deployment quarkus-todo-demo-app-aks --patch-file src/kube/patch-deployment.yml -n todo-quarkus
 ```
 
 The output should look like:
 
 ```
-deployment.apps/todo-quarkus-aks patched
+deployment.apps/quarkus-todo-demo-app-aks patched
 ```
 
-Let's go back to the Todo app GUI. Then, you will see the same todo list as the previous list because the Azure PostgreSQL database is running on Azure cloud. Besides, the Quarkus application retrieves the database credential from *Kubernetes Secret* rather than the local file system:
+Let's go back to the Todo app GUI and `refresh` the page. Then, you will see the same todo list as the previous list because the Azure PostgreSQL database is running on Azure cloud. Besides, the Quarkus application retrieves the database credential from *Kubernetes Secret* rather than the local file system:
 
 ![Screenshot](./media/aks-quarkus/todo-aks-secret.png)
 
