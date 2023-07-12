@@ -572,7 +572,7 @@ kubectl create role access-secrets --verb=get,list,watch,update,create --resourc
 kubectl create rolebinding --role=access-secrets default-to-secrets --serviceaccount=todo-quarkus:default -n todo-quarkus
 ```
 
-Try to add more Todo items to verify if the Quarkus application works well!! Find the solution repository [here](https://github.com/danieloh30/quarkus-todo-demo-app-aks).
+Try to update and add your own todo list to verify if the Quarkus application works well!! Find the solution repository [here](https://github.com/danieloh30/quarkus-todo-demo-app-aks).
 
 ### (Optional) Delete Azure Kubernetes Service cluster
 
