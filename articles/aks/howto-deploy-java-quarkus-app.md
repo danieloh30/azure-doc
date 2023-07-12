@@ -5,7 +5,7 @@ author: danieloh30
 ms.author: edburns
 ms.service: container-service
 ms.topic: how-to
-ms.date: 09/21/2022
+ms.date: 07/12/2023
 ms.custom: template-how-to, devx-track-java, devx-track-javaee, devx-track-javaee-quarkus-aks
 ---
 
