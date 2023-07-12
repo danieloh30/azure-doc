@@ -469,7 +469,7 @@ The output should look like:
 ```shell
 [SUCCESS] ✅  Extension io.quarkus:quarkus-kubernetes-config has been installed
 ```
-
+ 
 Secure the sensitive information such as *username* and *password* to access the Azure PostgreSQL database. Currently, the credential are stored as a plain text in `application.properties` file. Update the following values in `src/main/resources/application.properties` to keep the existing todo items and secure the database credential:
 
 ```yaml
