@@ -137,7 +137,7 @@ Let's say that AKS is our production environment to deploy the *Todo* applicatio
 
 Note that be sure to key the following value in the setting:
 
-* Server name - `todo-database`
+* Server name - `todo-quarkus-database`
 * Admin username - `quarkus`
 * Password - `r3dh4t1!`
 
@@ -162,7 +162,7 @@ Create a new database called `todo` by using the following command:
 az postgres db create \
   --resource-group $RESOURCE_GROUP \
   --name todo \
-  --server-name todo-database
+  --server-name todo-quarkus-database
 ```
 
 ### 2.3. Create a new namespace in AKS
@@ -255,9 +255,9 @@ Let’s add the following *Database configurations* variables in `src/main/resou
 ```yaml
 # Database configurations
 %prod.quarkus.datasource.db-kind=postgresql
-%prod.quarkus.datasource.jdbc.url=jdbc:postgresql://todo-database.postgres.database.azure.com:5432/todo
+%prod.quarkus.datasource.jdbc.url=jdbc:postgresql://todo-quarkus-database.postgres.database.azure.com:5432/todo
 %prod.quarkus.datasource.jdbc.driver=org.postgresql.Driver
-%prod.quarkus.datasource.username=quarkus@todo-database
+%prod.quarkus.datasource.username=quarkus@todo-quarkus-database
 %prod.quarkus.datasource.password=r3dh4t1!
 %prod.quarkus.hibernate-orm.database.generation=drop-and-create
 ```
@@ -420,7 +420,7 @@ Open Azure Cloud Shell in the Azure portal by selecting the icon on the upper-le
 Run the following command in the Azure Cloud Shell terminal. Replace values with `your server name` and admin user login name:
 
 ```shell
-psql --host=YOUR-POSTGRESQL-SERVER-NAME --port=5432 --username=quarkus@todo-database --dbname=todo
+psql --host=YOUR-POSTGRESQL-SERVER-NAME --port=5432 --username=quarkus@todo-quarkus-database --dbname=todo
 ```
 
 Key the password (`r3dh4t1!`) in the prompt. Then, execute the following query to get all todo items:
@@ -445,7 +445,7 @@ Create a new Kubernetes Secret to store the database credential using the follow
 
 ```shell
 kubectl create secret generic db-credentials \
-  --from-literal=username=quarkus@todo-database \
+  --from-literal=username=quarkus@todo-quarkus-database \
   --from-literal=password='r3dh4t1!' -n todo-quarkus
 ```
 
